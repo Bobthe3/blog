@@ -4,7 +4,7 @@ body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, hr, dl, dd, ol, ul, figure { m
 /** Basic styling */
 body { font: 400 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
  color: #000000;
- background-color: #1d1f21;
+ background-color: #ffffff;
   -webkit-text-size-adjust: 100%;
    -webkit-font-feature-settings: "kern" 1;
     -moz-font-feature-settings: "kern" 1;
@@ -40,7 +40,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: 400; }
 /** Links */
 a { color: #2a7ae2; text-decoration: none; }
 
-a:visited { color: #1756a9; }
+a:visited { color: #1798a9; }
 
 a:hover { color: #111; text-decoration: underline; }
 
