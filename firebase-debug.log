@@ -1,0 +1,81 @@
+[debug] [2021-07-08T05:23:19.292Z] ----------------------------------------------------------------------
+[debug] [2021-07-08T05:23:19.294Z] Command:       /usr/local/bin/firebase /Users/devan/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase deploy
+[debug] [2021-07-08T05:23:19.294Z] CLI Version:   9.14.0
+[debug] [2021-07-08T05:23:19.294Z] Platform:      darwin
+[debug] [2021-07-08T05:23:19.294Z] Node Version:  v12.18.1
+[debug] [2021-07-08T05:23:19.300Z] Time:          Wed Jul 07 2021 22:23:19 GMT-0700 (Pacific Daylight Time)
+[debug] [2021-07-08T05:23:19.300Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-07-08T05:23:19.309Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-07-08T05:23:19.309Z] > authorizing via signed-in user (devanvelji@gmail.com)
+[debug] [2021-07-08T05:23:19.309Z] [iam] checking project devanveljicom for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-07-08T05:23:19.312Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/devanveljicom:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-07-08T05:23:19.488Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 08 Jul 2021 05:23:19 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=65","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-07-08T05:23:19.491Z] > refreshing access token with scopes: []
+[debug] [2021-07-08T05:23:19.492Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-07-08T05:23:19.624Z] <<< HTTP RESPONSE 200 {"date":"Thu, 08 Jul 2021 05:23:19 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-07-08T05:23:19.672Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/devanveljicom [none]
+[debug] [2021-07-08T05:23:20.941Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/devanveljicom 200
+[debug] [2021-07-08T05:23:20.942Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/devanveljicom {"projectId":"devanveljicom","projectNumber":"581400374067","displayName":"devanveljicom","name":"projects/devanveljicom","resources":{"hostingSite":"devanveljicom"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'devanveljicom'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2021-07-08T05:23:20.945Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-07-08T05:23:20.945Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-07-08T05:23:21.073Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","date":"Thu, 08 Jul 2021 05:23:21 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-07-08T05:23:21.112Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/devanveljicom/versions  
+ {"config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2021-07-08T05:23:21.744Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 08 Jul 2021 05:23:21 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting[devanveljicom]: beginning deploy... 
+[info] i  hosting[devanveljicom]: found 10 files in _site 
+[debug] [2021-07-08T05:23:21.781Z] > refreshing access token with scopes: []
+[debug] [2021-07-08T05:23:21.782Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-07-08T05:23:21.783Z] [hosting] hash cache [X3NpdGU] stored for 10 files
+[debug] [2021-07-08T05:23:21.784Z] [hosting][hash queue][FINAL] {"max":5,"min":0,"avg":0.5,"active":0,"complete":10,"success":10,"errored":0,"retried":0,"total":10,"elapsed":9}
+[debug] [2021-07-08T05:23:21.949Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","date":"Thu, 08 Jul 2021 05:23:21 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-07-08T05:23:21.997Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/sites/devanveljicom/versions/c852cc6b3107506f:populateFiles [none]
+[debug] [2021-07-08T05:23:21.997Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/sites/devanveljicom/versions/c852cc6b3107506f:populateFiles {"files":{"/404.html":"d0273bd6791498cedf17e821da24bdfe214bd737cb063affca50cacac2608970","/Uk-Transport.html":"e8e39185030b90b3b762158c75e8350a4accf7ea7c7400a58f84b6e22da83e2c","/hello.html":"b23753f7e713f53c20cb271e17a4b502803eab8b8af76d8409b95c6aca2a1866","/index.html":"fd256f91c08d16f9fd50ec1ea589a5c26a10907f49734e0d6b89913ceb0f6bed","/old-Uk-Transport.html":"fa463868cc5069557d49a60dbe720f6b8e6f85209e15cd7ee87dd89fd88eab8f","/assets/main.css":"39efeb58b2dec49fa219b69983e348ebaa00c7212aa7a6e8de100eb681e8c71e","/assets/main.css.map":"4af4c40cb98ea749d52a02d88aa74a83bfc64274298609daad70c1144a6f1bbd","/assets/minima-social-icons.svg":"a83766902027eacc6d458c62539d4ff6a146d3a3542052036a4d452f64335020","/jekyll/update/2021/06/30/welcome-to-jekyll.html":"a77300b55729377cbceb7735660bfe3ed302f10ad280bb582621b454c5ac71b2","/about.html":"207777d3b714984dddc77fbee9b2fefc83526237d4534d00c0b2b7622a8da53d"}}
+[debug] [2021-07-08T05:23:22.332Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/sites/devanveljicom/versions/c852cc6b3107506f:populateFiles 200
+[debug] [2021-07-08T05:23:22.333Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/sites/devanveljicom/versions/c852cc6b3107506f:populateFiles {"uploadRequiredHashes":["207777d3b714984dddc77fbee9b2fefc83526237d4534d00c0b2b7622a8da53d"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/devanveljicom/versions/c852cc6b3107506f/files"}
+[debug] [2021-07-08T05:23:22.335Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/devanveljicom/versions/c852cc6b3107506f/files/207777d3b714984dddc77fbee9b2fefc83526237d4534d00c0b2b7622a8da53d [none]
+[debug] [2021-07-08T05:23:22.335Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/devanveljicom/versions/c852cc6b3107506f/files/207777d3b714984dddc77fbee9b2fefc83526237d4534d00c0b2b7622a8da53d [stream]
+[debug] [2021-07-08T05:23:22.337Z] [hosting][populate queue][FINAL] {"max":555,"min":555,"avg":555,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":557}
+[debug] [2021-07-08T05:23:22.338Z] [hosting] uploads queued: 1
+[debug] [2021-07-08T05:23:23.188Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/devanveljicom/versions/c852cc6b3107506f/files/207777d3b714984dddc77fbee9b2fefc83526237d4534d00c0b2b7622a8da53d 200
+[debug] [2021-07-08T05:23:23.189Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/devanveljicom/versions/c852cc6b3107506f/files/207777d3b714984dddc77fbee9b2fefc83526237d4534d00c0b2b7622a8da53d [stream]
+[debug] [2021-07-08T05:23:23.189Z] [hosting][upload queue][FINAL] {"max":856,"min":856,"avg":856,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":856}
+[info] ✔  hosting[devanveljicom]: file upload complete 
+[debug] [2021-07-08T05:23:23.196Z] [hosting] deploy completed after 1449ms
+[debug] [2021-07-08T05:23:23.198Z] [
+  {
+    "config": {
+      "public": "_site",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "site": "devanveljicom"
+    },
+    "site": "devanveljicom",
+    "version": "sites/devanveljicom/versions/c852cc6b3107506f"
+  }
+]
+[info] i  hosting[devanveljicom]: finalizing version... 
+[debug] [2021-07-08T05:23:23.199Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-07-08T05:23:23.200Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-07-08T05:23:23.473Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Thu, 08 Jul 2021 05:23:23 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-07-08T05:23:23.517Z] >>> HTTP REQUEST PATCH https://firebasehosting.googleapis.com/v1beta1/sites/devanveljicom/versions/c852cc6b3107506f?updateMask=status  
+ {"status":"FINALIZED"}
+[debug] [2021-07-08T05:23:23.912Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 08 Jul 2021 05:23:23 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-07-08T05:23:23.912Z] [hosting] finalized version for devanveljicom: {"name":"sites/devanveljicom/versions/c852cc6b3107506f","status":"FINALIZED","config":{},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2021-07-08T05:23:21.458983Z","createUser":{"email":"devanvelji@gmail.com"},"finalizeTime":"2021-07-08T05:23:23.883810Z","finalizeUser":{"email":"devanvelji@gmail.com"}}
+[info] ✔  hosting[devanveljicom]: version finalized 
+[info] i  hosting[devanveljicom]: releasing new version... 
+[debug] [2021-07-08T05:23:23.914Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/devanveljicom/releases?version_name=sites/devanveljicom/versions/c852cc6b3107506f  
+ {"message":null}
