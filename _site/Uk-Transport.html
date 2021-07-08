@@ -1,79 +1,94 @@
-<p>In this project I look at the United Kingdom's Department for Transport data. The UK government started producing this data at the start of the Covid-19 National Lockdown.</p>
-<p style="text-align:center;">
-<a href="https://www.gov.uk/government/statistics/transport-use-during-the-coronavirus-covid-19-pandemic">Link To Documentation Page</a>
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uk Transport Devan Velji Blog</title>
+  <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Your awesome title" />
+</head>
+<body>
+  <p>In this project I look at the United Kingdom's Department for Transport data. The UK government started producing this data at the start of the Covid-19 National Lockdown.</p>
+  <p style="text-align:center;">
+  <a href="https://www.gov.uk/government/statistics/transport-use-during-the-coronavirus-covid-19-pandemic">Link To Documentation Page</a>
+  </p>
 
 
-<p>--</p>
-<p>Data includes: 1. Road traffic in Great Britain 2. Rail passenger journeys in Great Britain 3. Transport for London (TfL) tube and bus routes 4. Bus travel in Great Britain (excluding London) 5. Cycling in England <br></p>
-<hr />
-<ul>
-<li>Installing the packages and creating the data frame</li>
-</ul>
-<code>
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(gganimate)
-<span class="kw">library</span>(ggplot2)
-<span class="kw">library</span>(png)
-<span class="kw">library</span>(gifski)
-<span class="kw">library</span>(scales)
-<span class="kw">library</span>(transformr)
-<span class="kw">library</span>(readr)
+  <p>--</p>
+  <p>Data includes: 1. Road traffic in Great Britain 2. Rail passenger journeys in Great Britain 3. Transport for London (TfL) tube and bus routes 4. Bus travel in Great Britain (excluding London) 5. Cycling in England <br></p>
+  <hr />
+  <ul>
+  <li>Installing the packages and creating the data frame</li>
+  </ul>
+  <code>
+  <pre class="sourceCode r"><code class="sourceCode r">
+  <span class="kw">library</span>(tidyverse)
+  <span class="kw">library</span>(gganimate)
+  <span class="kw">library</span>(ggplot2)
+  <span class="kw">library</span>(png)
+  <span class="kw">library</span>(gifski)
+  <span class="kw">library</span>(scales)
+  <span class="kw">library</span>(transformr)
+  <span class="kw">library</span>(readr)
 
-df&lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;~/COVID-19-transport-use-statistics v1.csv&quot;</span>)</code></pre>
-<ul>
-<li>Formating the date column into the date class</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r">df$col1&lt;-<span class="kw">as.Date</span>(df$col1,<span class="st">&quot;%d/%m/%Y&quot;</span>)</code></pre>
-<ul>
-<li>Creating the interactive plotly graph</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r">inter_all_plots&lt;-<span class="st"> </span><span class="kw">ggplotly</span>(all_plots,<span class="dt">tooltip =</span> F) %&gt;%<span class="st"> </span><span class="kw">config</span>(<span class="dt">displayModeBar=</span>F)
+  df&lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;~/COVID-19-transport-use-statistics v1.csv&quot;</span>)</code></pre>
+  <ul>
+  <li>Formating the date column into the date class</li>
+  </ul>
+  <pre class="sourceCode r"><code class="sourceCode r">df$col1&lt;-<span class="kw">as.Date</span>(df$col1,<span class="st">&quot;%d/%m/%Y&quot;</span>)</code></pre>
+  <ul>
+  <li>Creating the interactive plotly graph</li>
+  </ul>
+  <pre class="sourceCode r"><code class="sourceCode r">inter_all_plots&lt;-<span class="st"> </span><span class="kw">ggplotly</span>(all_plots,<span class="dt">tooltip =</span> F) %&gt;%<span class="st"> </span><span class="kw">config</span>(<span class="dt">displayModeBar=</span>F)
 
-<span class="kw">saveWidget</span>(inter_all_plots,<span class="st">&quot;all_transportation_plots.html&quot;</span>)
-</code></pre>
-<iframe src="\images\uk\all_transportation_plots.html" height="800px" width="105%" ></iframe>
+  <span class="kw">saveWidget</span>(inter_all_plots,<span class="st">&quot;all_transportation_plots.html&quot;</span>)
+  </code></pre>
+  <iframe src="\images\uk\all_transportation_plots.html" height="800px" width="105%" ></iframe>
 
-<hr />
-<ul>
-<li>Creating a basic animation of the % of cars</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Adding moving averages</span>
-df&lt;-df %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cars_3day =</span> <span class="kw">rollmean</span>(all_vehicles,<span class="dt">k=</span><span class="dv">3</span>,<span class="dt">fill=</span><span class="ot">NA</span>),
-        <span class="dt">cars_7day =</span> <span class="kw">rollmean</span>(all_vehicles,<span class="dt">k=</span><span class="dv">7</span>,<span class="dt">fill=</span><span class="ot">NA</span>),
-        <span class="dt">cars_15day =</span> <span class="kw">rollmean</span>(all_vehicles,<span class="dt">k=</span><span class="dv">15</span>,<span class="dt">fill=</span><span class="ot">NA</span>),
-        <span class="dt">cars_21day =</span> <span class="kw">rollmean</span>(all_vehicles,<span class="dt">k=</span><span class="dv">21</span>,<span class="dt">fill=</span><span class="ot">NA</span>))
+  <hr />
+  <ul>
+  <li>Creating a basic animation of the % of cars</li>
+  </ul>
+  <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Adding moving averages</span>
+  df&lt;-df %&gt;%
+  <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cars_3day =</span> <span class="kw">rollmean</span>(all_vehicles,<span class="dt">k=</span><span class="dv">3</span>,<span class="dt">fill=</span><span class="ot">NA</span>),
+          <span class="dt">cars_7day =</span> <span class="kw">rollmean</span>(all_vehicles,<span class="dt">k=</span><span class="dv">7</span>,<span class="dt">fill=</span><span class="ot">NA</span>),
+          <span class="dt">cars_15day =</span> <span class="kw">rollmean</span>(all_vehicles,<span class="dt">k=</span><span class="dv">15</span>,<span class="dt">fill=</span><span class="ot">NA</span>),
+          <span class="dt">cars_21day =</span> <span class="kw">rollmean</span>(all_vehicles,<span class="dt">k=</span><span class="dv">21</span>,<span class="dt">fill=</span><span class="ot">NA</span>))
 
-<span class="co"># Creating the graph</span>
+  <span class="co"># Creating the graph</span>
 
-main_plot&lt;-df %&gt;%
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">as.Date</span>(col1)))+
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span><span class="st">&quot;% of Motor Vehicles on UK Roads&quot;</span>,<span class="dt">x=</span><span class="st">&quot;Time&quot;</span>,
-    <span class="dt">y=</span><span class="st">&quot;Comparison to Feb 2020 1st Week Average&quot;</span>)+
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>all_vehicles,<span class="dt">color=</span><span class="st">&quot;% of Cars&quot;</span>))+
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>cars_3day,<span class="dt">color=</span><span class="st">&quot;3 Day Moving Average&quot;</span>))+
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>cars_7day,<span class="dt">color=</span><span class="st">&quot;7 Day Moving Average&quot;</span>))+
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>cars_15day,<span class="dt">color=</span><span class="st">&quot;15 Day Moving Average&quot;</span>))+
-<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>cars_21day,<span class="dt">color=</span><span class="st">&quot;21 Day Moving Average&quot;</span>))
-
-
-<span class="co"># Creating the animation</span>
-
-main_animation&lt;-main_plot+
-<span class="st">  </span><span class="kw">transition_reveal</span>(col1)+
-<span class="st">  </span><span class="kw">view_follow</span>(<span class="dt">fixed_x =</span> T,<span class="dt">fixed_y=</span>T)
+  main_plot&lt;-df %&gt;%
+  <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">as.Date</span>(col1)))+
+  <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span><span class="st">&quot;% of Motor Vehicles on UK Roads&quot;</span>,<span class="dt">x=</span><span class="st">&quot;Time&quot;</span>,
+      <span class="dt">y=</span><span class="st">&quot;Comparison to Feb 2020 1st Week Average&quot;</span>)+
+  <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>all_vehicles,<span class="dt">color=</span><span class="st">&quot;% of Cars&quot;</span>))+
+  <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>cars_3day,<span class="dt">color=</span><span class="st">&quot;3 Day Moving Average&quot;</span>))+
+  <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>cars_7day,<span class="dt">color=</span><span class="st">&quot;7 Day Moving Average&quot;</span>))+
+  <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>cars_15day,<span class="dt">color=</span><span class="st">&quot;15 Day Moving Average&quot;</span>))+
+  <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>cars_21day,<span class="dt">color=</span><span class="st">&quot;21 Day Moving Average&quot;</span>))
 
 
-<span class="co"># Changing up the speed of the animation</span>
+  <span class="co"># Creating the animation</span>
 
-<span class="kw">animate</span>(main_animation,
-  <span class="dt">height=</span><span class="dv">750</span>,
-  <span class="dt">width=</span><span class="dv">750</span>,
-  <span class="dt">duration=</span><span class="dv">15</span>,
-  <span class="dt">end_pause=</span><span class="dv">30</span>)</code></pre>
-<p><img src="\images\uk\UK_transportation_animationv2.gif" alt="Animation" /><!-- --></p>
-</code>
+  main_animation&lt;-main_plot+
+  <span class="st">  </span><span class="kw">transition_reveal</span>(col1)+
+  <span class="st">  </span><span class="kw">view_follow</span>(<span class="dt">fixed_x =</span> T,<span class="dt">fixed_y=</span>T)
+
+
+  <span class="co"># Changing up the speed of the animation</span>
+
+  <span class="kw">animate</span>(main_animation,
+    <span class="dt">height=</span><span class="dv">750</span>,
+    <span class="dt">width=</span><span class="dv">750</span>,
+    <span class="dt">duration=</span><span class="dv">15</span>,
+    <span class="dt">end_pause=</span><span class="dv">30</span>)</code></pre>
+  <p><img src="\images\uk\UK_transportation_animationv2.gif" alt="Animation" /><!-- --></p>
+  </code>
+
+
+
+</body>
+</html>
 
 
