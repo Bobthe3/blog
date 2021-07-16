@@ -1,4 +1,6 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>2021-02-16-Uk-Transportation</title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>2021-02-16-Uk-Transportation</title>
+<style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -625,7 +627,27 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="c5834faf-72fd-4363-8ff8-53f4ed0c186e" class="page sans"><header><h1 class="page-title">2021-02-16-Uk-Transportation</h1></header><div class="page-body"><p id="0017d0b0-f0d0-4f87-a528-65beae9e3d24" class="">In this project I look at the United Kingdom’s Department for Transport data and make couple of graphs</p><p id="378ec415-4351-4c3d-b818-e30cc0e7fd62" class=""><a href="https://www.gov.uk/government/statistics/transport-use-during-the-coronavirus-covid-19-pandemic">Link To Documentation Page</a></p><p id="2fc17406-8bbf-40e8-a16c-9e1843604e99" class="">–</p><p id="3ec38217-7713-469a-af5a-b34240cbb2d5" class="">Data includes: </p><p id="7c04afe1-2853-44da-bb16-4f2798fff81a" class="">1. Road traffic in Great Britain </p><p id="c1e1c82a-9b1e-4e7d-851d-26e0a06df485" class="">2. Rail passenger journeys in Great Britain </p><p id="061cc6a9-3c8e-4c61-97a9-02028bf91bac" class="">3. Transport for London (TfL) tube and bus routes</p><p id="e04cb667-5b96-435f-ba8b-87f5bd2177ca" class="">4. Bus travel in Great Britain (excluding London) </p><p id="a8887c1e-4f97-4ffd-b136-996a54274d4f" class="">5. Cycling in England</p><hr id="cc971573-1d15-40b2-8f9d-fb7cc3e0a031"/><ul id="58db72c8-7524-4b77-847a-f2c42644efaf" class="bulleted-list"><li>Installing the packages and creating the data frame</li></ul><pre id="91a3fe68-14b3-4434-b901-66eb12a2add1" class="code code-wrap"><code>library(tidyverse)
+</style>
+</head>
+<body>
+	<article id="c5834faf-72fd-4363-8ff8-53f4ed0c186e" class="page sans">
+		<header>
+			<h1 class="page-title">2021-02-16-Uk-Transportation</h1>
+		</header>
+		<div class="page-body">
+			<p id="0017d0b0-f0d0-4f87-a528-65beae9e3d24" class="">In this project I look at the United Kingdom’s Department for Transport data and make couple of graphs</p>
+			<p id="378ec415-4351-4c3d-b818-e30cc0e7fd62" class="">
+				<a href="https://www.gov.uk/government/statistics/transport-use-during-the-coronavirus-covid-19-pandemic">Link To Documentation Page</a>
+			</p>
+			<p id="2fc17406-8bbf-40e8-a16c-9e1843604e99" class="">–</p>
+			<p id="3ec38217-7713-469a-af5a-b34240cbb2d5" class="">Data includes: </p>
+			<p id="7c04afe1-2853-44da-bb16-4f2798fff81a" class="">1. Road traffic in Great Britain </p>
+			<p id="c1e1c82a-9b1e-4e7d-851d-26e0a06df485" class="">2. Rail passenger journeys in Great Britain </p>
+			<p id="061cc6a9-3c8e-4c61-97a9-02028bf91bac" class="">3. Transport for London (TfL) tube and bus routes</p>
+			<p id="e04cb667-5b96-435f-ba8b-87f5bd2177ca" class="">4. Bus travel in Great Britain (excluding London) </p>
+			<p id="a8887c1e-4f97-4ffd-b136-996a54274d4f" class="">5. Cycling in England</p>
+			<hr id="cc971573-1d15-40b2-8f9d-fb7cc3e0a031"/>
+			<ul id="58db72c8-7524-4b77-847a-f2c42644efaf" class="bulleted-list"><li>Installing the packages and creating the data frame</li></ul><pre id="91a3fe68-14b3-4434-b901-66eb12a2add1" class="code code-wrap"><code>library(tidyverse)
 library(gganimate)
 library(ggplot2)
 library(png)
