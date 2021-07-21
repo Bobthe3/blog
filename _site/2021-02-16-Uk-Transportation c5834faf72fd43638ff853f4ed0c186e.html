@@ -654,7 +654,11 @@ library(gifski)
 library(scales)
 library(transformr)
 library(readr)
-df&lt;- read_csv(&quot;~/COVID-19-transport-use-statistics v1.csv&quot;)</code></pre><hr id="b40c8739-4e79-4304-af95-0458f7e1c223"/><ul id="9edfe5e5-6d6b-4d0f-b497-267b5de68eee" class="bulleted-list"><li>Formating the date column into the date class</li></ul><pre id="fd8ac212-a3a0-4484-8bc6-a5b412b102d6" class="code code-wrap"><code>df$col1&lt;-as.Date(df$col1,&quot;%d/%m/%Y&quot;)</code></pre><hr id="7afeff78-dc24-4262-8dca-da15d7eafaea"/><ul id="9a3d4a9e-af45-43da-b231-0339a8b0f105" class="bulleted-list"><li>Creating the interactive plotly graph</li></ul><pre id="76f069c1-fe56-41fe-93ad-5800394ae46c" class="code code-wrap"><code>inter_all_plots&lt;- ggplotly(all_plots,tooltip = F) %&gt;% 
+df&lt;- read_csv(&quot;~/COVID-19-transport-use-statistics v1.csv&quot;)</code>
+</pre><hr id="b40c8739-4e79-4304-af95-0458f7e1c223"/><ul id="9edfe5e5-6d6b-4d0f-b497-267b5de68eee" class="bulleted-list"><li>Formating the date column into the date class</li></ul><pre id="fd8ac212-a3a0-4484-8bc6-a5b412b102d6" class="code code-wrap">
+	<code>df$col1&lt;-as.Date(df$col1,&quot;%d/%m/%Y&quot;)</code>
+</pre><hr id="7afeff78-dc24-4262-8dca-da15d7eafaea"/><ul id="9a3d4a9e-af45-43da-b231-0339a8b0f105" class="bulleted-list"><li>Creating the interactive plotly graph</li></ul><pre id="76f069c1-fe56-41fe-93ad-5800394ae46c" class="code code-wrap"><code>
+	inter_all_plots&lt;- ggplotly(all_plots,tooltip = F) %&gt;% 
 	config(displayModeBar=F)
 
 saveWidget(inter_all_plots,&quot;all_transportation_plots.html&quot;)</code></pre><hr id="8983bf2c-e22a-45e6-8524-3d3735f1dc55"/><ul id="5c3eb691-6601-4b02-bdb2-38d2cb35b1d1" class="bulleted-list"><li>Creating a basic animation of the % of cars</li></ul><pre id="8adb0f37-da60-4fb9-890b-e2059d7eebde" class="code code-wrap"><code># Adding moving averages
