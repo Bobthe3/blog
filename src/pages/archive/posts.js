@@ -16,7 +16,7 @@ export default function Posts() {
   return (
     <MainLayout>
       <Head>
-        <title>{name} - all posts</title>
+        <title>{name} - All Posts</title>
         <meta name="description" content={description} />
         <meta property="og:title" content={`${name} - all posts`} />
         <meta property="og:description" content={description} />
@@ -28,7 +28,7 @@ export default function Posts() {
         <Box mb={[8, 16]}>
           <Flex align="center" justify="space-between" px={[4, 8]} mb={6}>
             <Heading as="h2" fontSize="xl">
-              All posts
+              All Posts
             </Heading>
           </Flex>
 

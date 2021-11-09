@@ -25,17 +25,17 @@ module.exports = {
     },
     {
       name: 'Twitter',
-      url: 'https://twitter.com/twankrui',
+      url: '',
       icon: 'SiTwitter',
     },
     {
       name: 'Instagram',
-      url: 'https://instagram.com/twankrui',
+      url: '',
       icon: 'SiInstagram',
     },
     {
       name: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/twan-kruiswijk-bb853a71/',
+      url: 'https://www.linkedin.com/in/devan-velji-5b42801a4/',
       icon: 'SiLinkedin',
     },
     {
@@ -55,7 +55,7 @@ module.exports = {
     },
     {
       name: 'Twitch',
-      url: 'https://twitch.tv/twankrui',
+      url: '',
       icon: 'SiTwitch',
     },
   ],

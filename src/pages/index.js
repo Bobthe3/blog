@@ -25,7 +25,7 @@ export default function Home({ posts, readings }) {
         <Box mb={[12, 16]}>
           <Flex align="center" justify="space-between" px={[4, 8]} mb={6}>
             <Heading as="h2" fontSize="xl">
-              my thoughts
+              Write Ups
             </Heading>
           </Flex>
 
@@ -44,7 +44,7 @@ export default function Home({ posts, readings }) {
                 _active={{ backgroundColor: '#bb3531' }}
                 _hover={{ boxShadow: '2px 2px 0 #880400' }}
               >
-                All posts
+                All Posts
               </Button>
             </NextLink>
           </Flex>
@@ -52,7 +52,7 @@ export default function Home({ posts, readings }) {
 
         <Box>
           <Heading as="h2" fontSize="xl" px={[4, 8]} mb={6}>
-            What I’m reading / watching
+            What I’m Reading / Watching
           </Heading>
 
           <ReadingsList readings={readings.slice(0, 6)} />
@@ -70,7 +70,7 @@ export default function Home({ posts, readings }) {
                 _active={{ backgroundColor: '#bb3531' }}
                 _hover={{ boxShadow: '2px 2px 0 #880400' }}
               >
-                View all
+                View All
               </Button>
             </NextLink>
           </Flex>
