@@ -1,9 +1,9 @@
 module.exports = {
   // Basic site information (required)
-  name: 'twan.dev',
-  domain: 'twan.dev',
-  url: 'https://twan.dev',
-  description: 'Twan Kruiswijk personal blog about life, music, code and more.',
+  name: 'Devan Velji\'s Blog',
+  domain: 'devanvelji.com',
+  url: 'https://devanvelji.com',
+  description: 'Devan\'s personal blog about life, music, code and more.',
   fathomCode: 'TBSAIDMS',
 
   // SEO specific (optional)
