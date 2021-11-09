@@ -25,7 +25,7 @@ export default function Home({ posts, readings }) {
         <Box mb={[12, 16]}>
           <Flex align="center" justify="space-between" px={[4, 8]} mb={6}>
             <Heading as="h2" fontSize="xl">
-              Write Ups
+              Writeups
             </Heading>
           </Flex>
 
