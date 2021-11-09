@@ -10,6 +10,7 @@ import {
   SiTiktok,
   SiMedium,
   SiTwitch,
+  SiXbox,
 } from 'react-icons/si';
 
 const Socials = () => {
@@ -17,6 +18,8 @@ const Socials = () => {
     switch (icon) {
       case 'SiFacebook':
         return SiFacebook;
+      case 'SiXbox':
+        return SiXbox;
       case 'SiTwitter':
         return SiTwitter;
       case 'SiInstagram':

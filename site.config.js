@@ -1,14 +1,14 @@
 module.exports = {
   // Basic site information (required)
-  name: 'twan.dev',
-  domain: 'twan.dev',
-  url: 'https://twan.dev',
-  description: 'Twan Kruiswijk personal blog about life, music, code and more.',
-  fathomCode: 'TBSAIDMS',
+  name: 'Devan Velji\'s Blog',
+  domain: 'devanvelji.com',
+  url: 'https://devanvelji.com',
+  description: 'Devan Velji\'s personal blog about life, music, code and more.',
+  fathomCode: '',//this nees to be blank or it doesnt work
 
   // SEO specific (optional)
   defaultSocialImage:
-    'https://res.cloudinary.com/twankruiswijk/image/upload/v1624446915/twan-dev-social_zzbzzv.jpg',
+    'https://res.cloudinary.com/twankruiswijk/image/upload/v1624446915/twan-dev-social_zzbzzv.jpghttps://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2076&q=80',
 
   /* 
     Social media URLS (optional)
@@ -37,6 +37,11 @@ module.exports = {
       name: 'LinkedIn',
       url: 'https://www.linkedin.com/in/devan-velji-5b42801a4/',
       icon: 'SiLinkedin',
+    },
+    {
+      name: 'Xbox Gamer Tag',
+      url: 'https://account.xbox.com/en-us/Profile?Gamertag=dmoneysss',
+      icon: 'SiXbox',
     },
     {
       name: 'Youtube',
