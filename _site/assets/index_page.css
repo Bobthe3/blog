@@ -22,14 +22,55 @@ body { font: 400 30px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     top: 50%;
     padding: 12px;
     max-width: 50%;
+}
+.centered{
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    padding: 12px;
+    max-width: 50%;
+    text-align:center;
+}
 
+hr{
+    color: #303437;
+    width: 85%;
+    height:2px;
+    border-width:0;
+    background-color: #303437
 }
-a {
-    color: #F7B05B;
+/* Images  */
+img{
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
 }
-a:visited {
+figure {
+    margin: auto;
+  }
+figcaption {
+    color: #d36438;
+    font-style: italic;
+    font-size: 70%;
+    padding: 2px;
+    text-align: center;
+  }
+
+/* A tags */
+.reg-a{
     color:#F7B05B;
 }
-a:active {
-    color:#F7B05B;
+.cool-things{
+    color:#74A57F;
+}
+.contact-a{
+    color: #74A57F;
+}
+.reg-a:hover{
+    color:#7DBBC3;
+}
+
+a:hover {
+    color: rgb(247,176,91);
+    color: radial-gradient(circle, rgba(247,176,91,1) 0%, rgba(211,100,56,1) 100%);
 }
