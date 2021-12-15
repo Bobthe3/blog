@@ -14,7 +14,6 @@ body { font: 400 30px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         display: flex;
          min-height: 100vh;
           flex-direction: column; }
-
 .wrapper {
 
     margin: 0 auto;
@@ -42,23 +41,6 @@ hr{
     background-color: #303437
 }
 
-/* Images  */
-img{
-    margin-left: auto;
-    margin-right: auto;
-    width:100%;
-}
-figure {
-    margin: auto;
-  }
-figcaption {
-    color: #d36438;
-    font-style: italic;
-    font-size: 70%;
-    padding: 2px;
-    text-align: center;
-  }
-
 /* A tags */
 .reg-a{
     color:#F7B05B;
@@ -79,5 +61,41 @@ figcaption {
 a{
     color: rgb(247,176,91);
 }
-
-/* lists */
+/* Image  */
+.img-bounding {
+    position: relative;
+    width: 100%;
+  }
+.img-actual {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+} 
+.middle {
+    transition: .5s ease-out;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%)
+}
+.img-bounding:hover .img-actual {
+    opacity: 0.3;
+    filter: blur(10px);
+}
+.img-bounding:hover .middle {
+    opacity: 1;
+}
+.img-hover-text {
+    color: #d36438;
+    background-color: #303437;
+    border-radius: 25px;
+    font-style: italic;
+    font-size: 80%;
+    padding: 10px;
+    text-align: center;
+}
