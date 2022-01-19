@@ -37,9 +37,30 @@
     <meta name="theme-color" content="#ffffff">
 
 </head>
-    <body>
+<style>
+    /* style="background-image:#526377;background-image:  
+    radial-gradient(at 95% 91%, #D36438 0, transparent 48%),  
+    radial-gradient(at 11% 53%, #75A57F 0, transparent 76%),  
+    radial-gradient(at 48% 20%, #F8B05C 0, transparent 90%)" */
+
+    @keyframes gradient {
+        0%   {background: linear-gradient(-45deg,#75A57F 50%, #526377 50%);}
+        25%  {background: linear-gradient(-45deg,#75A57F 30%, #526377 30%);}
+        50%  {background: linear-gradient(-45deg,#75A57F 10%, #526377 10%);}
+        100% {background: linear-gradient(-45deg,#75A57F 1%, #526377 1%);}
+        
+    }
+    .gradient{
+        
+        animation-name: gradient;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in;
+    }
+</style>
+    <body class="gradient">
         <main>
-            <div class="wrapper">
+            <div class="wrapper" >
                 <h1>Devan Velji</h1>
                 <h3>
                     College Student
