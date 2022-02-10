@@ -49,3 +49,14 @@
 //         console.log("3")
 //     }
 // }
+
+function pasuser(form) { 
+    if (form.id.value=="ashwin"||form.id.value=="bupin"||form.id.value=="varun"||form.id.value=="ness") { 
+        if (form.pass.value=="konda") { location="assets/other/ogga_boga.mp4" } 
+        else if(form.pass.value=="varun"){ location="assets/other/shark_video.MOV" } 
+        else if(form.pass.value=="bupin"){ location="assets/other/rupin.jpeg" } 
+        else if(form.pass.value=="ridge"){ location="assets/other/funnycat.png" } 
+        else { alert("Wrong Password") } 
+        } 
+        else { alert("Wrong Username") } 
+    } 
