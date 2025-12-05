@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warm Gradient Screensaver</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            background: #000;
+            width: 100vw;
+            height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            filter: blur(80px);
+        }
+
+        .settings-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .settings-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .settings-button svg {
+            width: 20px;
+            height: 20px;
+            fill: rgba(255, 255, 255, 0.7);
+        }
+
+        .settings-panel {
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            width: 300px;
+            max-height: 80vh;
+            overflow-y: auto;
+            backdrop-filter: blur(20px);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            z-index: 99;
+        }
+
+        .settings-panel.visible {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+
+        .setting-group {
+            margin-bottom: 20px;
+        }
+
+        .setting-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .setting-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 13px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .setting-value {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #ff6b35;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: #ff6b35;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+
+        .fullscreen-button {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255, 107, 53, 0.2);
+            border: 1px solid rgba(255, 107, 53, 0.4);
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+
+        .fullscreen-button:hover {
+            background: rgba(255, 107, 53, 0.3);
+        }
+
+        .color-presets {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .color-preset-btn {
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .color-preset-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .color-preset-btn.active {
+            background: rgba(255, 107, 53, 0.3);
+            border-color: rgba(255, 107, 53, 0.6);
+            color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <div class="settings-button" id="settingsBtn">
+        <svg viewBox="0 0 24 24">
+            <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" />
+        </svg>
+    </div>
+
+    <div class="settings-panel" id="settingsPanel">
+        <div class="setting-group">
+            <div class="setting-label">
+                <span>Color Preset</span>
+            </div>
+            <div class="color-presets">
+                <button class="color-preset-btn active" data-preset="orange">Orange</button>
+                <button class="color-preset-btn" data-preset="red">Red</button>
+                <button class="color-preset-btn" data-preset="purple">Purple</button>
+                <button class="color-preset-btn" data-preset="blue">Blue</button>
+            </div>
+        </div>
+
+        <div class="setting-group">
+            <div class="setting-label">
+                <span>Speed</span>
+                <span class="setting-value" id="speedValue">1.0x</span>
+            </div>
+            <input type="range" id="speedSlider" min="0.1" max="3" step="0.1" value="1">
+        </div>
+
+        <div class="setting-group">
+            <div class="setting-label">
+                <span>Complexity</span>
+                <span class="setting-value" id="complexityValue">8</span>
+            </div>
+            <input type="range" id="complexitySlider" min="3" max="15" step="1" value="8">
+        </div>
+
+        <div class="setting-group">
+            <div class="setting-label">
+                <span>Size</span>
+                <span class="setting-value" id="sizeValue">300</span>
+            </div>
+            <input type="range" id="sizeSlider" min="150" max="600" step="50" value="300">
+        </div>
+
+        <div class="setting-group">
+            <div class="setting-label">
+                <span>Blur Amount</span>
+                <span class="setting-value" id="blurValue">80px</span>
+            </div>
+            <input type="range" id="blurSlider" min="40" max="150" step="10" value="80">
+        </div>
+
+        <div class="setting-group">
+            <div class="setting-label">
+                <span>Color Intensity</span>
+                <span class="setting-value" id="intensityValue">90%</span>
+            </div>
+            <input type="range" id="intensitySlider" min="60" max="100" step="5" value="90">
+        </div>
+
+        <div class="setting-group">
+            <div class="setting-label">
+                <span>Flow Speed</span>
+                <span class="setting-value" id="flowValue">0.5</span>
+            </div>
+            <input type="range" id="flowSlider" min="0.1" max="2" step="0.1" value="0.5">
+        </div>
+
+        <div class="setting-group">
+            <button class="fullscreen-button" id="fullscreenBtn">Toggle Fullscreen</button>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let animationFrameId;
+        let time = 0;
+        let shapes = [];
+
+        // Settings
+        let settings = {
+            speed: 1.0,
+            complexity: 8,
+            size: 300,
+            blur: 80,
+            intensity: 90,
+            flow: 0.5,
+            colorPreset: 'orange'
+        };
+
+        // Color presets with hue ranges
+        const colorPresets = {
+            orange: { hueStart: 0, hueRange: 60, name: 'Orange' },
+            red: { hueStart: 340, hueRange: 40, name: 'Red' },
+            purple: { hueStart: 270, hueRange: 60, name: 'Purple' },
+            blue: { hueStart: 200, hueRange: 60, name: 'Blue' }
+        };
+
+        // Set canvas size
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            if (typeof FluidShape !== 'undefined') {
+                initShapes();
+            }
+        }
+
+        // Abstract fluid shape class
+        class FluidShape {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.baseSize = settings.size * (0.8 + Math.random() * 0.4);
+                this.angle = Math.random() * Math.PI * 2;
+                this.angleSpeed = (Math.random() - 0.5) * 0.02;
+                this.vx = (Math.random() - 0.5) * settings.flow;
+                this.vy = (Math.random() - 0.5) * settings.flow;
+                const preset = colorPresets[settings.colorPreset];
+                this.hueOffset = preset.hueStart + Math.random() * preset.hueRange;
+                this.noiseOffset = Math.random() * 1000;
+            }
+
+            update() {
+                this.angle += this.angleSpeed * settings.speed;
+                this.x += this.vx * settings.speed;
+                this.y += this.vy * settings.speed;
+
+                // Wrap around edges
+                if (this.x < -this.baseSize) this.x = canvas.width + this.baseSize;
+                if (this.x > canvas.width + this.baseSize) this.x = -this.baseSize;
+                if (this.y < -this.baseSize) this.y = canvas.height + this.baseSize;
+                if (this.y > canvas.height + this.baseSize) this.y = -this.baseSize;
+
+                const preset = colorPresets[settings.colorPreset];
+                this.hueOffset = (this.hueOffset + 0.05 * settings.speed);
+                // Keep hue within the preset range
+                if (this.hueOffset > preset.hueStart + preset.hueRange) {
+                    this.hueOffset = preset.hueStart;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+
+                // Create organic, flowing shape using multiple overlapping gradients
+                const variations = 3;
+                for (let i = 0; i < variations; i++) {
+                    const offsetX = Math.sin(time * 0.3 + this.noiseOffset + i) * 50;
+                    const offsetY = Math.cos(time * 0.4 + this.noiseOffset + i) * 50;
+                    const size = this.baseSize * (0.7 + Math.sin(time * 0.5 + i) * 0.3);
+
+                    const gradient = ctx.createRadialGradient(
+                        offsetX, offsetY, 0,
+                        offsetX, offsetY, size
+                    );
+
+                    // Use the actual hue from the color preset without wrapping
+                    const hue = this.hueOffset + i * 15;
+                    gradient.addColorStop(0, `hsla(${hue}, ${settings.intensity}%, 65%, 0.6)`);
+                    gradient.addColorStop(0.4, `hsla(${hue + 10}, ${settings.intensity - 5}%, 55%, 0.4)`);
+                    gradient.addColorStop(0.7, `hsla(${hue + 20}, ${settings.intensity - 10}%, 45%, 0.2)`);
+                    gradient.addColorStop(1, `hsla(${hue + 30}, ${settings.intensity - 15}%, 35%, 0)`);
+
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(-size - 100, -size - 100, size * 2 + 200, size * 2 + 200);
+                }
+
+                ctx.restore();
+            }
+        }
+
+        function initShapes() {
+            shapes = Array.from({ length: settings.complexity }, () => new FluidShape());
+        }
+
+        // Initialize after FluidShape is defined
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        initShapes();
+
+        // Animation loop
+        function animate() {
+            time += 0.01 * settings.speed;
+
+            // Dark background with subtle gradient
+            const bgGradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            bgGradient.addColorStop(0, '#0a0505');
+            bgGradient.addColorStop(0.5, '#0f0508');
+            bgGradient.addColorStop(1, '#0a0505');
+
+            ctx.fillStyle = bgGradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Use screen blend mode for additive color mixing
+            ctx.globalCompositeOperation = 'screen';
+
+            // Update and draw shapes
+            shapes.forEach(shape => {
+                shape.update();
+                shape.draw();
+            });
+
+            ctx.globalCompositeOperation = 'source-over';
+
+            animationFrameId = requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Settings panel toggle
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsPanel = document.getElementById('settingsPanel');
+        let settingsVisible = false;
+
+        settingsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            settingsVisible = !settingsVisible;
+            settingsPanel.classList.toggle('visible', settingsVisible);
+        });
+
+        // Close settings when clicking outside
+        document.addEventListener('click', (e) => {
+            if (settingsVisible && !settingsPanel.contains(e.target) && e.target !== settingsBtn) {
+                settingsVisible = false;
+                settingsPanel.classList.remove('visible');
+            }
+        });
+
+        // Settings controls
+        const speedSlider = document.getElementById('speedSlider');
+        const complexitySlider = document.getElementById('complexitySlider');
+        const sizeSlider = document.getElementById('sizeSlider');
+        const blurSlider = document.getElementById('blurSlider');
+        const intensitySlider = document.getElementById('intensitySlider');
+        const flowSlider = document.getElementById('flowSlider');
+        const colorPresetBtns = document.querySelectorAll('.color-preset-btn');
+
+        // Color preset selection
+        colorPresetBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                settings.colorPreset = btn.dataset.preset;
+                colorPresetBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                initShapes(); // Reinitialize shapes with new colors
+            });
+        });
+
+        speedSlider.addEventListener('input', (e) => {
+            settings.speed = parseFloat(e.target.value);
+            document.getElementById('speedValue').textContent = settings.speed.toFixed(1) + 'x';
+        });
+
+        complexitySlider.addEventListener('input', (e) => {
+            settings.complexity = parseInt(e.target.value);
+            document.getElementById('complexityValue').textContent = settings.complexity;
+            initShapes();
+        });
+
+        sizeSlider.addEventListener('input', (e) => {
+            settings.size = parseInt(e.target.value);
+            document.getElementById('sizeValue').textContent = settings.size;
+            initShapes();
+        });
+
+        blurSlider.addEventListener('input', (e) => {
+            settings.blur = parseInt(e.target.value);
+            document.getElementById('blurValue').textContent = settings.blur + 'px';
+            canvas.style.filter = `blur(${settings.blur}px)`;
+        });
+
+        intensitySlider.addEventListener('input', (e) => {
+            settings.intensity = parseInt(e.target.value);
+            document.getElementById('intensityValue').textContent = settings.intensity + '%';
+        });
+
+        flowSlider.addEventListener('input', (e) => {
+            settings.flow = parseFloat(e.target.value);
+            document.getElementById('flowValue').textContent = settings.flow.toFixed(1);
+            shapes.forEach(shape => {
+                shape.vx = (Math.random() - 0.5) * settings.flow;
+                shape.vy = (Math.random() - 0.5) * settings.flow;
+            });
+        });
+
+        // Fullscreen toggle
+        document.getElementById('fullscreenBtn').addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.error('Error attempting to enable fullscreen:', err);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        });
+    </script>
+</body>
+</html>
